@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import "leaflet/dist/leaflet.css";
 
@@ -42,6 +43,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Plausible Analytics - Privacy-friendly, GDPR-compliant, no cookies */}
+        <Script
+          defer
+          data-domain="isomap.io"
+          src="https://plausible.io/js/script.js"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
