@@ -1,0 +1,58 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient background -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d9488;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Subtle pattern overlay -->
+    <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1.5" fill="rgba(255,255,255,0.1)"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Isochrone visualization (simplified concentric polygons) -->
+  <g opacity="0.2">
+    <!-- Outer polygon (30 min) -->
+    <path d="M 800 315 L 850 280 L 920 270 L 980 300 L 1000 360 L 970 420 L 900 450 L 820 440 L 770 390 L 780 340 Z"
+          fill="none" stroke="white" stroke-width="3"/>
+
+    <!-- Middle polygon (15 min) -->
+    <path d="M 830 315 L 865 295 L 910 290 L 950 310 L 960 350 L 940 390 L 890 410 L 840 405 L 810 370 L 815 335 Z"
+          fill="none" stroke="white" stroke-width="3"/>
+
+    <!-- Inner polygon (5 min) -->
+    <path d="M 860 315 L 880 305 L 900 303 L 920 315 L 925 340 L 915 365 L 885 375 L 860 370 L 845 350 L 850 330 Z"
+          fill="none" stroke="white" stroke-width="3"/>
+
+    <!-- Center point -->
+    <circle cx="890" cy="340" r="6" fill="white"/>
+  </g>
+
+  <!-- Main text -->
+  <text x="100" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="700" fill="white">
+    IsoMap API
+  </text>
+
+  <!-- Subtext -->
+  <text x="100" y="310" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="400" fill="rgba(255,255,255,0.9)">
+    Developer-First Isochrone Mapping
+  </text>
+
+  <!-- Features list -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="rgba(255,255,255,0.85)">
+    <text x="100" y="390">✓ Simple REST API</text>
+    <text x="100" y="440">✓ Transparent Pricing - $99/mo</text>
+    <text x="100" y="490">✓ 30-Day Free Beta Access</text>
+  </g>
+
+  <!-- Bottom tagline -->
+  <text x="100" y="570" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="300" fill="rgba(255,255,255,0.7)">
+    Drive-time mapping for real estate, logistics, and field service apps
+  </text>
+</svg>
