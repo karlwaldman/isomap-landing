@@ -36,6 +36,20 @@ export default function IsochroneDemo() {
   const [responseData, setResponseData] = useState<any>(null);
   const [showCode, setShowCode] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [precalculatedData, setPrecalculatedData] = useState<any>(null);
+
+  // Load precalculated isochrones on mount
+  useEffect(() => {
+    fetch('/precalculated-isochrones.json')
+      .then(res => res.json())
+      .then(data => {
+        setPrecalculatedData(data);
+        console.log('✅ Loaded precalculated isochrones');
+      })
+      .catch(err => {
+        console.error('⚠️ Could not load precalculated data, falling back to API:', err);
+      });
+  }, []);
 
   // Initialize map
   useEffect(() => {
@@ -85,26 +99,50 @@ export default function IsochroneDemo() {
     setResponseData(null);
 
     try {
-      // Call our backend proxy API (no CORS issues)
-      const response = await fetch("/api/isochrone", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          lat: selectedLocation.lat,
-          lng: selectedLocation.lng,
-          time: selectedTime,
-          mode: selectedMode.value,
-        }),
-      });
+      let data;
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || `API error: ${response.status}`);
+      // Try to use precalculated data first
+      if (precalculatedData &&
+          precalculatedData[selectedLocation.name] &&
+          precalculatedData[selectedLocation.name][selectedMode.value] &&
+          precalculatedData[selectedLocation.name][selectedMode.value][selectedTime]) {
+
+        const cached = precalculatedData[selectedLocation.name][selectedMode.value][selectedTime];
+
+        if (cached.error) {
+          throw new Error(cached.message || 'Precalculated data failed');
+        }
+
+        data = cached;
+        console.log('⚡ Using precalculated isochrone (instant!)');
+
+        // Add small artificial delay so users see the button state change
+        await new Promise(resolve => setTimeout(resolve, 300));
+      } else {
+        // Fall back to API call
+        console.log('📡 Fetching from API (precalculated data not available)');
+
+        const response = await fetch("/api/isochrone", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            lat: selectedLocation.lat,
+            lng: selectedLocation.lng,
+            time: selectedTime,
+            mode: selectedMode.value,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `API error: ${response.status}`);
+        }
+
+        data = await response.json();
       }
 
-      const data = await response.json();
       setResponseData(data);
 
       // Remove existing isochrone layer
@@ -201,6 +239,11 @@ print(geojson)`,
                 <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                 <p className="mt-2 text-sm text-gray-600">Generating isochrone...</p>
               </div>
+            </div>
+          )}
+          {precalculatedData && (
+            <div className="absolute top-3 right-3 bg-green-50 border border-green-200 rounded-lg px-3 py-1.5 text-xs font-medium text-green-700 shadow-sm">
+              ⚡ Instant Demo (Precalculated)
             </div>
           )}
         </div>
@@ -356,7 +399,11 @@ print(geojson)`,
           </div>
 
           <p className="text-xs text-gray-500 mt-4">
-            Demo uses OpenRouteService API to generate real isochrones with actual road routing. Production API will use self-hosted OSRM for unlimited requests.
+            {precalculatedData ? (
+              <>⚡ Instant demo using precalculated isochrones. Production API generates these on-demand with sub-200ms response times.</>
+            ) : (
+              <>Demo uses OpenRouteService API to generate real isochrones with actual road routing. Production API will use self-hosted OSRM for unlimited requests.</>
+            )}
           </p>
         </div>
       </div>
