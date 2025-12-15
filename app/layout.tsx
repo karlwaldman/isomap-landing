@@ -9,17 +9,29 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
   },
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     title: "IsoMap API - Isochrone Mapping API for Developers",
     description: "Developer-first isochrone API with transparent pricing and 5-minute setup. No enterprise sales friction.",
     url: "https://isomap.io",
     siteName: "IsoMap",
     type: "website",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'IsoMap API - Developer-First Isochrone Mapping',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "IsoMap API - Isochrone Mapping API",
     description: "Developer-first isochrone API with transparent pricing and 5-minute setup. No enterprise sales friction.",
+    images: ['/og-image.png'],
   },
 };
 
