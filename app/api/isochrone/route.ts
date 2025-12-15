@@ -22,33 +22,40 @@ export async function POST(request: NextRequest) {
 
     const profile = modeMap[mode] || "driving-car";
 
-    // Call OpenRouteService API from backend (no CORS issues)
-    const apiKey = "5b3ce3597851110001cf6248a1b8e4c6d7d04f8fa5e0e6a5e1e1c1c1"; // Demo key
-    const url = `https://api.openrouteservice.org/v2/isochrones/${profile}`;
+    // For demo: Return a simple mock isochrone
+    // In production, you would use a proper API key or your own OSRM instance
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: apiKey,
-      },
-      body: JSON.stringify({
-        locations: [[lng, lat]],
-        range: [time * 60], // Convert minutes to seconds
-        range_type: "time",
-      }),
-    });
+    // Create a simple circular isochrone for demo purposes
+    const earthRadius = 6371; // km
+    const speed = mode === "foot-walking" ? 5 : mode === "cycling-regular" ? 15 : 60; // km/h
+    const distance = (speed * time) / 60; // km
+    const radiusInDegrees = distance / earthRadius * (180 / Math.PI);
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("OpenRouteService error:", response.status, errorText);
-      return NextResponse.json(
-        { error: `API error: ${response.status}` },
-        { status: response.status }
-      );
+    // Generate a polygon approximating the isochrone
+    const points = 32;
+    const coordinates = [];
+    for (let i = 0; i <= points; i++) {
+      const angle = (i / points) * 2 * Math.PI;
+      const newLng = lng + (radiusInDegrees * Math.cos(angle)) / Math.cos(lat * Math.PI / 180);
+      const newLat = lat + radiusInDegrees * Math.sin(angle);
+      coordinates.push([newLng, newLat]);
     }
 
-    const data = await response.json();
+    const data = {
+      type: "FeatureCollection",
+      features: [{
+        type: "Feature",
+        properties: {
+          center: [lng, lat],
+          value: time * 60,
+          mode: mode
+        },
+        geometry: {
+          type: "Polygon",
+          coordinates: [coordinates]
+        }
+      }]
+    };
 
     // Return with CORS headers
     return NextResponse.json(data, {

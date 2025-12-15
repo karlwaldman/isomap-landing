@@ -323,7 +323,7 @@ print(geojson)`,
           </div>
 
           <p className="text-xs text-gray-500 mt-4">
-            Demo powered by OpenRouteService. Production API coming Q1 2025.
+            Demo uses simplified circular approximation. Production API will use OSRM for accurate road-based isochrones.
           </p>
         </div>
       </div>
