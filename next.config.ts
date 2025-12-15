@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://docs.google.com; frame-src https://docs.google.com;",
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://*.tile.openstreetmap.org https://unpkg.com; font-src 'self' data:; connect-src 'self' https://docs.google.com https://api.openrouteservice.org https://*.tile.openstreetmap.org; frame-src https://docs.google.com;",
           },
         ],
       },
