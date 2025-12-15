@@ -199,11 +199,11 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">14. Governing Law</h2>
             <p className="text-gray-600">
-              These Terms are governed by the laws of the United States and the State of [Your State],
+              These Terms are governed by the laws of the United States and the Commonwealth of Massachusetts,
               without regard to conflict of law principles.
             </p>
             <p className="text-gray-600 mt-4">
-              Any disputes will be resolved in the courts of [Your State]. You consent to personal
+              Any disputes will be resolved in the courts of Massachusetts. You consent to personal
               jurisdiction in these courts.
             </p>
           </section>
