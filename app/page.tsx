@@ -296,52 +296,52 @@ const geojson = await response.json();`}
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-semibold text-gray-900">⚡ Blazing Fast</h3>
+              <h3 className="text-xl font-semibold text-gray-900">⚡ Built on OSRM</h3>
               <p className="mt-2 text-gray-600">
-                Optimized routing engine built on OSRM (Open Source Routing Machine).
-                Average response time under 200ms for most requests.
+                Routing engine built on OSRM (Open Source Routing Machine), the same technology
+                powering major mapping platforms. Target response time under 200ms.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-gray-600">
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Global CDN for low latency
+                  OpenStreetMap road network data
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Pre-computed routing graphs
+                  Contraction Hierarchies algorithm
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Intelligent caching layer
+                  Standard GeoJSON output
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  99.9% uptime SLA
+                  Simple REST API
                 </li>
               </ul>
             </div>
             <div>
               <h3 className="text-xl font-semibold text-gray-900">🛠️ Developer-Friendly</h3>
               <p className="mt-2 text-gray-600">
-                Built by developers, for developers. Comprehensive docs, code examples in 5+ languages,
-                and responsive support.
+                Built by developers, for developers. Clear documentation, code examples,
+                and direct founder support during beta.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-gray-600">
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Interactive API playground
+                  Simple REST API
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  npm, pip, gem packages
+                  Code examples provided
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Postman collection
+                  Direct email support
                 </li>
                 <li className="flex items-center">
                   <span className="text-secondary mr-2">✓</span>
-                  Discord community
+                  30-day free beta access
                 </li>
               </ul>
             </div>
