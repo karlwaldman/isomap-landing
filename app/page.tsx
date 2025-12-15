@@ -51,7 +51,7 @@ export default function Home() {
                   disabled={status === "loading"}
                   className="rounded-lg bg-primary px-6 py-3 font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50"
                 >
-                  {status === "loading" ? "..." : "Join Waitlist"}
+                  {status === "loading" ? "..." : "Request Beta Access"}
                 </button>
               </div>
               {status === "success" && (
@@ -62,7 +62,7 @@ export default function Home() {
               )}
             </form>
             <p className="mt-3 text-sm text-gray-500">
-              Get early access when we launch. No spam, unsubscribe anytime.
+              Limited beta spots. We'll personally review each application and reach out within 48 hours.
             </p>
           </div>
 
@@ -75,7 +75,7 @@ export default function Home() {
                 clipRule="evenodd"
               />
             </svg>
-            <span>Launching Q1 2025</span>
+            <span>Beta launching January 2025 • 20 spots available</span>
           </div>
         </div>
 
@@ -274,12 +274,12 @@ const geojson = await response.json();`}
               <h3 className="text-xl font-semibold text-gray-900">💰 Transparent Pricing</h3>
               <p className="mt-2 text-gray-600">
                 Usage-based pricing that scales with you. No surprises. No sales calls.
-                Start free, pay as you grow.
+                Beta testers get 30 days free to test, then simple monthly plans.
               </p>
               <div className="mt-4 space-y-3 text-sm">
                 <div className="flex justify-between p-3 bg-white rounded">
-                  <span className="font-medium">Free Tier</span>
-                  <span className="text-gray-600">1,000 requests/mo</span>
+                  <span className="font-medium">Beta Access</span>
+                  <span className="text-gray-600">30 days free</span>
                 </div>
                 <div className="flex justify-between p-3 bg-white rounded">
                   <span className="font-medium">Startup</span>
@@ -453,13 +453,13 @@ const geojson = await response.json();`}
                 </tr>
                 <tr className="bg-gray-50">
                   <td className="border border-gray-200 px-6 py-4 text-sm text-gray-900">
-                    Free Tier
+                    Beta Access
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm">
-                    <span className="text-secondary">✓</span> 1K/mo
+                    <span className="text-secondary">✓</span> 30 days free
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm text-gray-600">
-                    100/mo
+                    First 100K free
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm text-gray-600">
                     Trial only
@@ -595,7 +595,7 @@ const geojson = await response.json();`}
             Ready to Build with IsoMap?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
-            Join the waitlist to get early access, exclusive launch pricing, and free credits.
+            Request beta access. Get 30 days free to test the API. Limited to 20 developers with strong use cases.
           </p>
           <div className="mx-auto mt-8 max-w-md">
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -613,7 +613,7 @@ const geojson = await response.json();`}
                   disabled={status === "loading"}
                   className="rounded-lg bg-white px-6 py-3 font-semibold text-primary hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary disabled:opacity-50"
                 >
-                  {status === "loading" ? "..." : "Get Early Access"}
+                  {status === "loading" ? "..." : "Request Beta Access"}
                 </button>
               </div>
               {status === "success" && (
@@ -643,7 +643,7 @@ const geojson = await response.json();`}
                 So I'm building IsoMap: a developer-first isochrone API with transparent pricing, excellent docs, and no sales calls. Built on open-source routing technology (OSRM + OpenStreetMap), optimized for speed and cost.
               </p>
               <p>
-                <strong>Why now?</strong> I'm validating demand before building. If you're interested, join the waitlist above. If I get 5+ signups with strong use cases, I'll build the production API in 6 weeks. If not, I'll pivot.
+                <strong>Why now?</strong> I'm validating demand before building. If you're interested, request beta access above. If I get 5+ committed users with strong use cases, I'll build the production API in 6 weeks. If not, I'll pivot.
               </p>
               <p>
                 <strong>My background:</strong> Full-stack developer with 10+ years building B2B SaaS. Previously built APIs serving millions of requests/month. I know how to build reliable infrastructure at scale.
