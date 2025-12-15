@@ -7,31 +7,10 @@ export default function Home() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("loading");
-
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setStatus("success");
-        setMessage("Thanks! You're on the list. We'll be in touch soon.");
-        setEmail("");
-      } else {
-        setStatus("error");
-        setMessage(data.error || "Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      setStatus("error");
-      setMessage("Network error. Please try again.");
-    }
+    // Redirect to Google Form (opens in new tab)
+    window.open("https://docs.google.com/forms/d/e/1FAIpQLScfDgITcsXwg4TtLneLU4Ti6Xm2yPWaE4lpiQwEMnGZiKJA6Q/viewform?usp=dialog", "_blank");
   };
 
   return (
