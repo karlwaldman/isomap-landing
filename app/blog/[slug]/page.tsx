@@ -7,9 +7,9 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
 interface ArticleProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 const articlesDirectory = path.join(process.cwd(), 'articles')
@@ -36,7 +36,8 @@ function getArticleBySlug(slug: string) {
 }
 
 export async function generateMetadata({ params }: ArticleProps): Promise<Metadata> {
-  const article = getArticleBySlug(params.slug)
+  const { slug } = await params
+  const article = getArticleBySlug(slug)
 
   if (!article) {
     return {
@@ -66,8 +67,9 @@ export async function generateStaticParams() {
   ]
 }
 
-export default function BlogPost({ params }: ArticleProps) {
-  const article = getArticleBySlug(params.slug)
+export default async function BlogPost({ params }: ArticleProps) {
+  const { slug } = await params
+  const article = getArticleBySlug(slug)
 
   if (!article) {
     return (
