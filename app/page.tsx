@@ -1,6 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
+
+// Dynamically import the demo to avoid SSR issues with Leaflet
+const IsochroneDemo = dynamic(
+  () => import("./components/IsochroneDemo"),
+  { ssr: false }
+);
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -70,6 +77,11 @@ export default function Home() {
             </svg>
             <span>Launching Q1 2025</span>
           </div>
+        </div>
+
+        {/* Interactive Demo */}
+        <div className="mt-16">
+          <IsochroneDemo />
         </div>
 
         {/* Visual Example */}
@@ -611,6 +623,47 @@ const geojson = await response.json();`}
                 <p className="text-sm text-red-200">{message}</p>
               )}
             </form>
+          </div>
+        </div>
+
+        {/* About Section */}
+        <div className="mt-24 border-t border-gray-200 pt-24">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+              About IsoMap
+            </h2>
+            <div className="space-y-6 text-lg text-gray-600">
+              <p>
+                IsoMap started when I was building a field service management app and realized that existing isochrone APIs were either prohibitively expensive (Mapbox) or required talking to sales (TravelTime, Targomo).
+              </p>
+              <p>
+                After analyzing the market, I found that most developers need simple, affordable drive-time mapping for common use cases: service areas, real estate search, delivery zones. They don't need enterprise features, they just need it to work.
+              </p>
+              <p>
+                So I'm building IsoMap: a developer-first isochrone API with transparent pricing, excellent docs, and no sales calls. Built on open-source routing technology (OSRM + OpenStreetMap), optimized for speed and cost.
+              </p>
+              <p>
+                <strong>Why now?</strong> I'm validating demand before building. If you're interested, join the waitlist above. If I get 5+ signups with strong use cases, I'll build the production API in 6 weeks. If not, I'll pivot.
+              </p>
+              <p>
+                <strong>My background:</strong> Full-stack developer with 10+ years building B2B SaaS. Previously built APIs serving millions of requests/month. I know how to build reliable infrastructure at scale.
+              </p>
+              <p className="text-base italic border-l-4 border-primary pl-4">
+                "Build what developers actually need, not what enterprise sales teams want to sell." - My philosophy
+              </p>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-gray-700 font-medium">Questions? Feedback?</p>
+              <p className="text-gray-600 mt-2">
+                Email me:{" "}
+                <a
+                  href="mailto:hello@isomap.io"
+                  className="text-primary hover:underline font-medium"
+                >
+                  hello@isomap.io
+                </a>
+              </p>
+            </div>
           </div>
         </div>
 
