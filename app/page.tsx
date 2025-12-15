@@ -27,10 +27,10 @@ export default function Home() {
         <div className="pt-16 pb-8 text-center lg:pt-24">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
             <span className="block">Isochrone API</span>
-            <span className="block text-primary">50% Cheaper Than Mapbox</span>
+            <span className="block text-primary">For Developers Who Hate Enterprise Sales</span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-600">
-            Drive-time mapping API for developers. Simple, fast, and affordable.
+            Drive-time mapping API with transparent pricing and 5-minute setup. No sales calls, no surprises.
             Perfect for field service software, real estate platforms, and logistics tools.
           </p>
 
@@ -113,9 +113,9 @@ export default function Home() {
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             <div className="rounded-lg border border-gray-200 p-6">
               <div className="text-4xl">💸</div>
-              <h3 className="mt-4 text-xl font-semibold text-gray-900">Too Expensive</h3>
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">Enterprise Sales Games</h3>
               <p className="mt-2 text-gray-600">
-                Mapbox charges $4 per 1,000 requests. That's $400/mo for a small app with 100K requests.
+                Need volume pricing? "Contact sales." Want to upgrade? "Schedule a call." Pricing changes with no notice.
               </p>
             </div>
             <div className="rounded-lg border border-gray-200 p-6">
@@ -439,16 +439,16 @@ const geojson = await response.json();`}
               <tbody>
                 <tr>
                   <td className="border border-gray-200 px-6 py-4 text-sm text-gray-900">
-                    Price (100K req/mo)
+                    Pricing Model
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm font-semibold text-primary">
-                    $199/mo
+                    Transparent, no surprises
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm text-gray-600">
-                    $400/mo
+                    Complex tiers, contact sales
                   </td>
                   <td className="border border-gray-200 px-6 py-4 text-center text-sm text-gray-600">
-                    $300+/mo
+                    Fixed fee, sales required
                   </td>
                 </tr>
                 <tr className="bg-gray-50">
@@ -634,7 +634,7 @@ const geojson = await response.json();`}
             </h2>
             <div className="space-y-6 text-lg text-gray-600">
               <p>
-                IsoMap started when I was building a field service management app and realized that existing isochrone APIs were either prohibitively expensive (Mapbox) or required talking to sales (TravelTime, Targomo).
+                IsoMap started when I was building a field service management app and realized that existing isochrone APIs required enterprise sales calls (TravelTime, Targomo) or had complex, opaque pricing structures that changed without notice.
               </p>
               <p>
                 After analyzing the market, I found that most developers need simple, affordable drive-time mapping for common use cases: service areas, real estate search, delivery zones. They don't need enterprise features, they just need it to work.
