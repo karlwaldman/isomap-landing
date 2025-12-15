@@ -273,8 +273,8 @@ const geojson = await response.json();`}
             <div>
               <h3 className="text-xl font-semibold text-gray-900">💰 Transparent Pricing</h3>
               <p className="mt-2 text-gray-600">
-                Usage-based pricing that scales with you. No surprises. No sales calls.
-                Beta testers get 30 days free to test, then simple monthly plans.
+                Simple, usage-based pricing. No surprises. No sales calls.
+                Beta testers get 30 days free, then $99/mo for 50K requests.
               </p>
               <div className="mt-4 space-y-3 text-sm">
                 <div className="flex justify-between p-3 bg-white rounded">
@@ -282,16 +282,16 @@ const geojson = await response.json();`}
                   <span className="text-gray-600">30 days free</span>
                 </div>
                 <div className="flex justify-between p-3 bg-white rounded">
-                  <span className="font-medium">Startup</span>
-                  <span className="text-gray-600">$49/mo (10K requests)</span>
+                  <span className="font-medium">After Beta</span>
+                  <span className="text-gray-600">$99/mo (50K requests)</span>
                 </div>
                 <div className="flex justify-between p-3 bg-white rounded">
-                  <span className="font-medium">Growth</span>
-                  <span className="text-gray-600">$199/mo (100K requests)</span>
+                  <span className="font-medium">Cost per Request</span>
+                  <span className="text-gray-600">$1.98 per 1,000</span>
                 </div>
                 <div className="flex justify-between p-3 bg-white rounded">
-                  <span className="font-medium">Enterprise</span>
-                  <span className="text-gray-600">Custom (unlimited)</span>
+                  <span className="font-medium">Higher Volume?</span>
+                  <span className="text-gray-600">Email for custom pricing</span>
                 </div>
               </div>
             </div>
