@@ -84,25 +84,23 @@ export default function IsochroneDemo() {
     setResponseData(null);
 
     try {
-      // Use OpenRouteService API for real isochrone generation
-      const apiKey = "5b3ce3597851110001cf6248a1b8e4c6d7d04f8fa5e0e6a5e1e1c1c1"; // Public demo key
-      const url = `https://api.openrouteservice.org/v2/isochrones/${selectedMode.value}`;
-
-      const response = await fetch(url, {
+      // Call our backend proxy API (no CORS issues)
+      const response = await fetch("/api/isochrone", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: apiKey,
         },
         body: JSON.stringify({
-          locations: [[selectedLocation.lng, selectedLocation.lat]],
-          range: [selectedTime * 60], // Convert minutes to seconds
-          range_type: "time",
+          lat: selectedLocation.lat,
+          lng: selectedLocation.lng,
+          time: selectedTime,
+          mode: selectedMode.value,
         }),
       });
 
       if (!response.ok) {
-        throw new Error(`API error: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.error || `API error: ${response.status}`);
       }
 
       const data = await response.json();
