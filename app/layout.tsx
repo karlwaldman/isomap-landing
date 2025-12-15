@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "IsoMap API - Isochrone Mapping API for Developers",
   description: "Drive-time mapping API 50% cheaper than Mapbox. Simple, fast, affordable isochrone API for field service, real estate, and logistics software.",
   keywords: "isochrone API, drive time map, travel time API, isochrone mapping, routing API, field service API, real estate API",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
+  },
   openGraph: {
     title: "IsoMap API - Isochrone Mapping API for Developers",
     description: "50% cheaper than Mapbox. Simple drive-time mapping API for developers.",
