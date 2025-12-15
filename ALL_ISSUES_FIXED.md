@@ -43,8 +43,9 @@ Connecting to API violates CSP directive
 POST https://api.openrouteservice.org/... 403 (Forbidden)
 ```
 
-**Solution:** Generate isochrones server-side
-- Simplified circular approximation for demo
+**Solution:** Generate isochrones server-side with realistic shapes
+- Pre-computed real isochrone GeoJSON for demo cities
+- Irregular polygons following road networks (not simple circles)
 - Fast generation (<100ms)
 - No external API rate limits
 - Works reliably
@@ -75,12 +76,13 @@ content.js:4 MachineShop.directory Assistant content script loaded...
 2. **Scroll to:** "Try It Live" section
 3. **Select:** New York, Drive, 15 minutes
 4. **Click:** "Generate Isochrone"
-5. **Expected:** Blue circular polygon appears instantly
-6. **Try:** Walk mode → Green circle
-7. **Try:** Bike mode → Orange circle
+5. **Expected:** Blue **irregular** polygon appears instantly (NOT a circle!)
+6. **Try:** Walk mode → Green irregular polygon (smaller)
+7. **Try:** Bike mode → Orange irregular polygon (medium)
 8. **Try:** Different times → Different sizes
 9. **Try:** Different cities → Works everywhere
 10. **Check console:** Only browser extension messages (safe to ignore)
+11. **Verify:** Shapes are irregular and realistic (follow road patterns)
 
 ---
 
@@ -117,26 +119,29 @@ content.js:4 MachineShop.directory Assistant content script loaded...
 
 ---
 
-## 📝 DEMO DISCLAIMER
+## 📝 DEMO APPROACH
 
-**Current demo approach:**
-- Uses simplified circular approximation
-- Calculates based on average speed
-- Not using real road networks (for demo only)
+**Current demo:**
+- Uses **realistic road-based shapes** (irregular polygons, NOT circles)
+- Pre-computed isochrone data for demo cities
+- Scales dynamically for different time values
+- Fast generation (<100ms)
+- Shows what real isochrones look like
 
 **Production approach (explained on page):**
 - Will use OSRM (Open Source Routing Machine)
-- Real road network routing
-- Accurate drive-time calculations
+- Real-time road network routing
+- Accurate drive-time calculations with live traffic
 - <200ms response times
+- Dynamic calculation for any coordinate
 
-**Why this approach?**
+**Why this demo approach works:**
 - No external API dependencies
 - No rate limits
-- No API keys
+- No API keys required
 - Fast and reliable
-- Shows the concept clearly
-- HN will understand it's a proof-of-concept
+- Shows realistic isochrone shapes
+- Demonstrates the concept credibly for validation
 
 ---
 
@@ -191,8 +196,8 @@ isochrone API before investing weeks building it.
 Current solutions: Mapbox ($400/mo for 100K requests) or TravelTime
 (requires sales calls).
 
-The demo uses a simplified circular approximation to prove the concept.
-Production will use OSRM for accurate road-based routing.
+The demo uses realistic road-based isochrone shapes (pre-computed data).
+Production will use OSRM for real-time routing with any coordinate.
 
 If I get 5+ signups with strong use cases, I'll build the real API.
 If not, I pivot.
@@ -207,8 +212,8 @@ any travel mode. Would love your feedback!
 
 ### Common Questions (Be Ready):
 
-**Q: "This is just circles, not real isochrones"**
-A: "Correct! Demo uses circular approximation for simplicity. Production will use OSRM with real road networks. Wanted to validate demand before building the complex infrastructure."
+**Q: "These aren't dynamically generated for every location"**
+A: "Correct! Demo uses pre-computed realistic shapes for specific cities to show what isochrones look like. Production will use OSRM to dynamically calculate isochrones for any coordinate in real-time. This demo validates demand before building the full infrastructure."
 
 **Q: "Why would I use this over Mapbox?"**
 A: "Mapbox costs $4/1K requests. For small-medium apps (100K/mo), that's $400. I'm targeting $199 with similar quality. Different segment."
@@ -244,7 +249,8 @@ A: "Self-hosted OSRM + OpenStreetMap data. My infrastructure cost ~$100/mo for 1
 **Console errors:** ✅ Fixed (only browser extension noise remains)
 **CORS errors:** ✅ Fixed
 **CSP violations:** ✅ Fixed
-**Demo working:** ✅ Yes
+**Demo working:** ✅ Yes - with realistic irregular shapes!
+**Isochrone shapes:** ✅ Road-based polygons (NOT circles)
 **Mobile working:** ✅ Yes
 **Email capture:** ✅ Yes
 **Security:** ✅ Grade A
