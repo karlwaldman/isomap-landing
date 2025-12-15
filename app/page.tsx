@@ -60,6 +60,12 @@ export default function Home() {
               {status === "error" && (
                 <p className="text-sm text-red-600">{message}</p>
               )}
+              <p className="text-xs text-gray-500">
+                By submitting, you agree to our{" "}
+                <a href="/privacy" className="text-primary hover:underline">Privacy Policy</a>
+                {" "}and{" "}
+                <a href="/terms" className="text-primary hover:underline">Terms of Service</a>.
+              </p>
             </form>
             <p className="mt-3 text-sm text-gray-500">
               Limited beta spots. We'll personally review each application and reach out within 48 hours.
@@ -622,6 +628,12 @@ const geojson = await response.json();`}
               {status === "error" && (
                 <p className="text-sm text-red-200">{message}</p>
               )}
+              <p className="text-xs text-blue-100">
+                By submitting, you agree to our{" "}
+                <a href="/privacy" className="text-white hover:underline font-medium">Privacy Policy</a>
+                {" "}and{" "}
+                <a href="/terms" className="text-white hover:underline font-medium">Terms of Service</a>.
+              </p>
             </form>
           </div>
         </div>
@@ -670,7 +682,18 @@ const geojson = await response.json();`}
         {/* Footer */}
         <footer className="mt-24 border-t border-gray-200 py-12 text-center text-sm text-gray-600">
           <p>© 2025 IsoMap. All rights reserved.</p>
-          <p className="mt-2">
+          <div className="mt-4 flex justify-center gap-6">
+            <a href="/privacy" className="text-primary hover:underline">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="text-primary hover:underline">
+              Terms of Service
+            </a>
+            <a href="mailto:hello@isomap.io" className="text-primary hover:underline">
+              Contact
+            </a>
+          </div>
+          <p className="mt-4">
             Built with <span className="text-red-500">♥</span> for developers
           </p>
         </footer>
