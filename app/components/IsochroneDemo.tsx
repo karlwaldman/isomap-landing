@@ -323,7 +323,7 @@ print(geojson)`,
           </div>
 
           <p className="text-xs text-gray-500 mt-4">
-            Demo uses simplified circular approximation. Production API will use OSRM for accurate road-based isochrones.
+            Demo uses OpenRouteService API to generate real isochrones with actual road routing. Production API will use self-hosted OSRM for unlimited requests.
           </p>
         </div>
       </div>
