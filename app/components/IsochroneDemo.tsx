@@ -35,6 +35,7 @@ export default function IsochroneDemo() {
   const [error, setError] = useState<string | null>(null);
   const [responseData, setResponseData] = useState<any>(null);
   const [showCode, setShowCode] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
 
   // Initialize map
   useEffect(() => {
@@ -298,23 +299,55 @@ print(geojson)`,
               <div className="space-y-3">
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setShowCode(!showCode)}
-                    className="flex-1 px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    onClick={() => {
+                      setShowCode(!showCode);
+                      if (showResponse) setShowResponse(false);
+                    }}
+                    className={`flex-1 px-4 py-2 rounded-lg border-2 text-sm font-medium transition-colors ${
+                      showCode
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                   >
-                    {showCode ? "Hide" : "Show"} Code
+                    {showCode ? "Hide" : "Show"} Request
                   </button>
                   <button
-                    onClick={() => navigator.clipboard.writeText(JSON.stringify(responseData, null, 2))}
-                    className="flex-1 px-4 py-2 rounded-lg border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                    onClick={() => {
+                      setShowResponse(!showResponse);
+                      if (showCode) setShowCode(false);
+                    }}
+                    className={`flex-1 px-4 py-2 rounded-lg border-2 text-sm font-medium transition-colors ${
+                      showResponse
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
                   >
-                    Copy JSON
+                    {showResponse ? "Hide" : "Show"} Response
                   </button>
                 </div>
 
                 {showCode && (
                   <div className="space-y-2">
-                    <pre className="text-xs bg-gray-900 text-green-400 p-3 rounded overflow-x-auto max-h-40">
+                    <div className="text-xs font-medium text-gray-700 mb-1">API Request Example:</div>
+                    <pre className="text-xs bg-gray-900 text-green-400 p-3 rounded overflow-x-auto max-h-60">
                       <code>{getCodeExample("curl")}</code>
+                    </pre>
+                  </div>
+                )}
+
+                {showResponse && (
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="text-xs font-medium text-gray-700">API Response (GeoJSON):</div>
+                      <button
+                        onClick={() => navigator.clipboard.writeText(JSON.stringify(responseData, null, 2))}
+                        className="text-xs px-2 py-1 rounded border border-gray-300 text-gray-700 hover:bg-gray-50"
+                      >
+                        Copy JSON
+                      </button>
+                    </div>
+                    <pre className="text-xs bg-gray-900 text-cyan-400 p-3 rounded overflow-x-auto max-h-60">
+                      <code>{JSON.stringify(responseData, null, 2)}</code>
                     </pre>
                   </div>
                 )}
