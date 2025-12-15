@@ -14,10 +14,34 @@ export default function Home() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Redirect to Google Form (opens in new tab)
-    window.open("https://docs.google.com/forms/d/e/1FAIpQLScfDgITcsXwg4TtLneLU4Ti6Xm2yPWaE4lpiQwEMnGZiKJA6Q/viewform?usp=dialog", "_blank");
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/beta-signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setMessage(data.message || "Thanks! We'll be in touch soon.");
+        setEmail(""); // Clear the form
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setStatus("error");
+      setMessage("Failed to submit. Please check your connection and try again.");
+    }
   };
 
   return (
