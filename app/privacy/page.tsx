@@ -4,7 +4,7 @@ export default function PrivacyPolicy() {
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900">Privacy Policy</h1>
-          <p className="mt-2 text-gray-600">Last updated: December 15, 2025</p>
+          <p className="mt-2 text-gray-600">Last updated: October 11, 2026</p>
         </div>
 
         <div className="prose prose-lg max-w-none space-y-8">
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
               <strong>We do NOT sell your data.</strong> We only share data with:
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
-              <li><strong>Service Providers:</strong> Google (email storage), DigitalOcean (hosting), Vercel (website hosting)</li>
+              <li><strong>Service Providers:</strong> Google (email storage), DigitalOcean (hosting), Vercel (website hosting), PostHog (public-page analytics)</li>
               <li><strong>Legal Obligations:</strong> If required by law or to protect our rights</li>
             </ul>
             <p className="text-gray-600 mt-4">
@@ -107,7 +107,7 @@ export default function PrivacyPolicy() {
               <li>Is GDPR, CCPA, and PECR compliant</li>
             </ul>
             <p className="text-gray-600 mt-4">
-              No cookie banner is needed because we don't use tracking cookies.
+              Our PostHog integration sends the public page path and referring website with an identifier held in memory for the page load. It creates no cookies or persistent visitor identifier, sends no query strings, fragments, form inputs or account data, and respects Do Not Track and Global Privacy Control.
             </p>
           </section>
 

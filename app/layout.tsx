@@ -1,3 +1,4 @@
+import PostHogAnalytics from '../components/PostHogAnalytics';
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
@@ -57,7 +58,9 @@ export default function RootLayout({
           src="https://plausible.io/js/script.js"
         />
       </head>
-      <body>{children}</body>
+      <body>{children}
+        <PostHogAnalytics />
+        <a href="/privacy" style={{display:"block",textAlign:"center",padding:"1rem"}}>Analytics privacy</a></body>
     </html>
   );
 }
