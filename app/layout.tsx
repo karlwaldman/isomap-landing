@@ -4,6 +4,8 @@ import "./globals.css";
 import "leaflet/dist/leaflet.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://isomap.io"),
+  alternates: { canonical: "/" },
   title: "IsoMap API - Isochrone Mapping API for Developers",
   description: "Developer-first isochrone API with transparent pricing and 5-minute setup. Drive-time mapping for field service, real estate, and logistics software. No enterprise sales friction.",
   keywords: "isochrone API, drive time map, travel time API, isochrone mapping, routing API, field service API, real estate API",

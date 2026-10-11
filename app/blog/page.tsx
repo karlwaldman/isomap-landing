@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/blog" },
   title: 'IsoMap Blog - Guides on Isochrone Mapping & GIS APIs',
   description: 'Learn about isochrone maps, travel time analysis, and geospatial APIs with comprehensive guides, code examples, and real-world use cases.',
 }
