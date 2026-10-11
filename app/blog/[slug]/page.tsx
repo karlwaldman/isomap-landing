@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: ArticleProps): Promise<Metada
   }
 
   return {
+    alternates: { canonical: `/blog/${slug}` },
     title: article.frontmatter.title,
     description: article.frontmatter.description,
     keywords: article.frontmatter.keywords,
@@ -71,18 +73,7 @@ export default async function BlogPost({ params }: ArticleProps) {
   const { slug } = await params
   const article = getArticleBySlug(slug)
 
-  if (!article) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-16">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-          <Link href="/blog" className="text-primary hover:text-blue-700">
-            ← Back to Blog
-          </Link>
-        </div>
-      </div>
-    )
-  }
+  if (!article) notFound();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -121,9 +112,9 @@ export default async function BlogPost({ params }: ArticleProps) {
             remarkPlugins={[remarkGfm]}
             components={{
               h1: ({ children }) => (
-                <h1 className="text-3xl font-bold text-gray-900 mt-8 mb-4 first:mt-0">
+                <h2 className="text-3xl font-bold text-gray-900 mt-8 mb-4 first:mt-0">
                   {children}
-                </h1>
+                </h2>
               ),
               h2: ({ children }) => (
                 <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4 border-b border-gray-200 pb-2">
